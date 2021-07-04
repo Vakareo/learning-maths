@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(37, 37, 37);
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+li, a, button {
+    font-size: 1.6rem;
+    color:rgb(235, 235, 235);
+    text-decoration: none;
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 30px 5%;
+}
+h3{
+    font-size: 1.4rem;
+    color:rgb(235, 235, 235);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 5%;
+}
+
+.svg-box{
+    width: 500px;
+    height: 500px;
+    
+}
+
+.logo {
+    display: none;
+    width: 50px;
+    cursor: pointer;
+}
+
+.menu-icon {
+    cursor: pointer;
+}
+
+.nav-links {
+    list-style: none;
+}
+
+.nav-links li {
+
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.nav-links li a {
+    transition: all 0.3s, ease 0s;
+}
+.nav-links li a:hover {
+    color:rgb(255, 255, 255);
+}
+
+button{
+    padding: 9px 25px;
+    background-color: rgba(0, 139, 169, 1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s, ease 0s;
+}
+
+button:hover{
+    background-color: rgba(0, 139, 169, 0.8);
+}
+
+#slider-number{
+    position:absolute;
+}
+
+.grid-back {
+    fill: rgb(49, 49, 49);
+}
+
+
+.grid-front {
+    fill: rgb(109, 109, 109);
+}
+
+.graph-line {
+    stroke-width: 5px;
+    stroke-linecap: round;
+    /* stroke-dasharray: 2000; */
+    /* stroke-dashoffset: 2000; */
+    stroke: cornflowerblue;
+    /* transform: scale(500.0); */
+    fill: none;
+}
+
+.overlay-border {
+    fill: none;
+    stroke-width: 4px;
+    stroke: rgb(109, 109, 109);
+}

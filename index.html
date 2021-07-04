@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>m a t h s</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#">Basic Math</a></li>
+                <li><a href="#">Linear Algebra</a></li>
+                <li><a href="#">Other Math</a></li>
+                <li><a href="#">Other Stuff</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <svg class="svg-box" id="main-graph-container" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"
+            version="1.1">
+            <defs>
+                <pattern class="grid-pattern" id="pattern" patternUnits="userSpaceOnUse" width="21" height="21">
+                    <rect class="grid-back" width="20" height="20" x="0" y="0"></rect>
+                </pattern>
+            </defs>
+            <rect class="grid-front" width="500" height="500" />
+            <rect width="500" height="500" fill="url(#pattern)" />
+            <g id="main-graph">
+                <path class="graph-line" id="main-line" d="" />
+            </g>
+            <rect class="overlay-border" width="500" height="500" />
+        </svg>
+    </div>
+
+    <div class="container">
+        <input type="range" step="1" min="1" max="7" value="1" class="slider" id="power-slider">
+    </div>
+
+    <div class="container">
+        <h3>y = x<sup id="slider-number">1</sup></h3>
+    </div>
+
+</body>
+
+</html>
