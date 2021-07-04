@@ -1,75 +1,76 @@
+class Point {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
 
+    static distanceBetweenTwoPoints(point1, point2) {
+        const lengthX = point2.x - point1.x;
+        const lengthY = point2.y - point1.y;
+        return Math.sqrt(Math.pow(lengthX, 2) + Math.pow(lengthY, 2));
+    }
 
+    static angleBetweenTwoPoints(point1, point2) {
+        const lengthX = point2.x - point1.x;
+        const lengthY = point2.y - point1.y;
+        return Math.atan2(lengthY, lengthX);
+    }
 
-// Generate an svg path 
-function generateSvgPath(data) {
-    let svgPath = "";
-    let startCP;
-    let endCP;
-    data.forEach((dot, i) => {
-        if (i !== 0) {
-            startCP = generateControlPoint(data[i - 1], data[i - 2], dot);
-            endCP = generateControlPoint(dot, data[i - 1], data[i + 1], true);
-        }
-        svgPath += i === 0 ? 'M ' : 'C ';
-        svgPath += i === 0 ? `${dot[0]},${dot[1]} ` : `${startCP.x},${startCP.y} ${endCP.x},${endCP.y} ${dot[0]},${dot[1]} `
-    })
-
-    return svgPath;
-}
-
-const line = (pointA, pointB) => {
-    const lengthX = pointB[0] - pointA[0]
-    const lengthY = pointB[1] - pointA[1]
-    return {
-        length: Math.sqrt(Math.pow(lengthX, 2) + Math.pow(lengthY, 2)),
-        angle: Math.atan2(lengthY, lengthX)
+    toString() {
+        return `${this.x},${this.y}`;
     }
 }
 
-const generateControlPoint = (current, previous, next, reverse) => {
-    const p = previous || current
-    const n = next || current
-    const smoothing = 0.1
-    const o = line(p, n)
-    const angle = o.angle + (reverse ? Math.PI : 0)
-    const length = o.length * smoothing
-    const x = current[0] + Math.cos(angle) * length
-    const y = current[1] + Math.sin(angle) * length
-    return { x, y };
+function generateSvgPath(points) {
+    let path = "";
+    let startControlPoint;
+    let endControlPoint;
+    points.forEach((point, i) => {
+        if (i !== 0) {
+            startControlPoint = generateControlPoint(points[i - 1], points[i - 2], point, false);
+            endControlPoint = generateControlPoint(point, points[i - 1], points[i + 1], true);
+            path += `C ${startControlPoint} ${endControlPoint} ${point} `;
+            return;
+        }
+        path += `M ${point} `;
+    })
+    return path;
 }
 
-function generateData(steps, power) {
+const generateControlPoint = (current, previous, next, reverse) => {
+    const p = previous || current;
+    const n = next || current;
+    const smoothing = 0.1;
+    const angle = Point.angleBetweenTwoPoints(p, n) + (reverse ? Math.PI : 0);
+    const distance = Point.distanceBetweenTwoPoints(p, n) * smoothing;
+    const x = current.x + Math.cos(angle) * distance;
+    const y = current.y + Math.sin(angle) * distance;
+    return new Point(x, y);
+}
+
+function generatePathData(steps, power) {
     let data = [];
     for (let i = 0; i <= steps; i++) {
         const x = 2 * ((i / steps) - 0.5);
         const y = Math.pow(x, power);
-        data.push([(i / steps), (1 - y) / 2]);
+        data.push(new Point((i / steps), (1 - y) / 2));
     }
     return data;
 }
 
-
-const scale = 500;
-
-const addLineDataToSVG = (data) => {
-    // scale the data
-    data = data.map(item => [item[0] * scale, item[1] * scale]);
-    let line = generateSvgPath(data);
-    return line;
+const addPathDataToSvg = (data) => {
+    return generateSvgPath(data);
 }
 
-const data = generateData(24, 1);
+const initialData = generatePathData(24, 1);
 const graphLine = document.querySelector("#main-line");
-const slider = document.getElementById("power-slider")
-const sliderText = document.getElementById("slider-number")
+const slider = document.getElementById("power-slider");
+const sliderText = document.getElementById("slider-number");
+
+graphLine.setAttribute("d", addPathDataToSvg(initialData));
 
 slider.oninput = function () {
     sliderText.innerHTML = slider.value;
-    const newData = generateData(24, slider.value);
-    graphLine.setAttribute("d", addLineDataToSVG(newData));
-
+    const userModifiedData = generatePathData(24, slider.value);
+    graphLine.setAttribute("d", addPathDataToSvg(userModifiedData));
 }
-
-graphLine.setAttribute("d", addLineDataToSVG(data));
-
