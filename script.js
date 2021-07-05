@@ -37,7 +37,7 @@ function generateSvgPath(points) {
     return path;
 }
 
-const generateControlPoint = (current, previous, next, reverse) => {
+function generateControlPoint(current, previous, next, reverse) {
     const p = previous || current;
     const n = next || current;
     const smoothing = 0.1;
@@ -58,7 +58,7 @@ function generatePathData(steps, power) {
     return data;
 }
 
-const addPathDataToSvg = (data) => {
+function addPathDataToSvg(data) {
     return generateSvgPath(data);
 }
 
