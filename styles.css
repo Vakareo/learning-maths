@@ -11,7 +11,7 @@
 
 li, a, button {
     font-size: 1.6rem;
-    color:rgb(235, 235, 235);
+    color:rgb(218, 218, 218);
     text-decoration: none;
 }
 
@@ -23,20 +23,26 @@ header {
 }
 h3{
     font-size: 1.4rem;
-    color:rgb(235, 235, 235);
+    color:rgb(223, 223, 223);
 }
 
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 5%;
+    padding: 8px 5%;
 }
 
 .svg-box{
     display: flex;
-    padding: 1% 5%;
     max-height: 80vh;    
+}
+
+.slider-label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px, 5%;
 }
 
 .logo {
@@ -54,7 +60,6 @@ h3{
 }
 
 .nav-links li {
-
     display: inline-block;
     padding: 0px 20px;
 }
@@ -66,27 +71,15 @@ h3{
     color:rgb(255, 255, 255);
 }
 
-button{
-    padding: 9px 25px;
-    background-color: rgba(0, 139, 169, 1);
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s, ease 0s;
-}
-
-button:hover{
-    background-color: rgba(0, 139, 169, 0.8);
-}
-
 #slider-number{
     position:absolute;
+    font-size: 1rem;
+    color: rgb(255, 255, 255);
 }
 
 .grid-back {
     fill: rgb(49, 49, 49);
 }
-
 
 .grid-front {
     fill: rgb(109, 109, 109);
