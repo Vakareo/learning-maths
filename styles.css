@@ -34,9 +34,9 @@ h3{
 }
 
 .svg-box{
-    width: 500px;
-    height: 500px;
-    
+    display: flex;
+    padding: 1% 5%;
+    max-height: 80vh;    
 }
 
 .logo {
