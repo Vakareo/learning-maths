@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Find and Replace
-        uses: jacobtomlinson/gha-find-replace@master
+        uses: jacobtomlinson/gha-find-replace@0.1.4
         with:
           find: "127.0.0.1:5500/"
           replace: "vakareo.github.io/learning-maths/"
