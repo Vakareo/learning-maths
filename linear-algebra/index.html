@@ -5,23 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="127.0.0.1:5500/">
+    <link rel="icon" href="/images/favicon.png">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            $("#header").load("/header.html");
+        });
+    </script>
     <title>m a t h s</title>
-    <link rel="icon" href="images/favicon.png">
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <script defer src="/script.js"></script>
 </head>
 
 <body>
-    <header>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="/Basic Math/">Basic Math</a></li>
-                <li><a href="#">Linear Algebra</a></li>
-                <li><a href="#">Other Math</a></li>
-                <li><a href="#">Other Stuff</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div id="header"></div>
 
     <div class="container">
         <svg class="svg-box" id="main-graph-container" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"
